@@ -1,0 +1,85 @@
+.taskbar{
+opacity:1;
+padding-top:1px;
+z-index:30;
+color:white;
+background-color:black;
+position: absolute;
+height: 100px;
+width: 100%;
+}
+#title{
+position: fixed;
+font-family:impact;
+font-size:29px;
+position: relative;
+top : -20px;
+width: 300px;
+padding-left:90px;
+padding-right:0px;
+-webkit-box-reflect: below -30px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, 0.3)));
+-moz-box-reflect: below -30px -moz-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, 0.3)));
+box-reflect: below -30px gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, 0.3)));
+}
+#main_div{
+width: 60%;
+position: absolute;
+top: 200px;
+left: 250px; 
+}
+#que-btn{
+font-size:15px;
+width: 190px;
+position: fixed;
+left: 10px;
+top: 200px;
+}
+#m_d{
+margin-left:0px;
+margin-right:0px;
+border-left:4px solid #009688;
+border-right:4px solid #009688;
+}
+::-webkit-input-placeholder{
+color:grey;
+font-size:20px;
+}
+#discussions{
+cursor:pointer;
+width:150px;
+position: fixed;
+color: white;
+right: 160px;
+top: 30px;
+}
+#filterdiscussions{
+font-size:13px;
+border-right:2px solid blue;
+padding-right:10px;
+}
+#disc_cnt{
+z-index:30;
+width:57.7%;
+position: fixed;
+left: 265px;
+background-color:white;
+}
+#disc_cnt1{
+z-index:30;
+width:57.7%;
+position: fixed;
+left: 265px;
+background-color:white;
+}
+#disc_cnt3{
+z-index:30;
+width:57.7%;
+position: fixed;
+left: 265px;
+background-color:white;
+}
+#home {
+	position: fixed;
+	top: 0px;
+	right: 100px;
+}
