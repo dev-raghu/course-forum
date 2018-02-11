@@ -7,33 +7,33 @@
 	    if(isset($_POST['submitreply'])){
 		$dbhost = "localhost:3306";
 		$dbuser = "root";
-		$dbpass = "root";
-		$conn = mysql_connect($dbhost,$dbuser,$dbpass);
+		$dbpass = "";
+		$conn = mysqli_connect($dbhost,$dbuser,$dbpass);
 		if(!$conn) {
-			die("Can't connect now...oops !!! <br> reason : ".mysql_error());
+			die("Can't connect now...oops !!! <br> reason : ".mysqli_error($conn));
 		}
 		$sql = "create database if not exists forum";
-		$retval = mysql_query($sql,$conn);
+		$retval = mysqli_query($conn, $sql);
 		if(!$retval) {
-			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysql_error());
+			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysqli_error($conn));
 		}
-		mysql_select_db("forum");
+		mysqli_select_db($conn, "forum");
 		$sql = "create table if not exists anstab (ans TEXT NOT NULL,aid int AUTO_INCREMENT NOT NULL primary key,qid int NOT NULL,uid varchar(100) NOT NULL)";
-		$retval = mysql_query($sql,$conn);
+		$retval = mysqli_query($conn, $sql);
 		if(!$retval) {
-			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysql_error());
+			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysqli_error($conn));
 		}
 		$qid=$_GET["qid"];
-		$ans=mysql_real_escape_string($_POST["replyarea"]);
-		$uid=mysql_real_escape_string($_POST['uid']);
-		$uid=mysql_real_escape_string($_POST['uid']);
+		$ans=($_POST["replyarea"]);
+		$uid=($_POST['uid']);
+		$uid=($_POST['uid']);
 		$sql="insert into anstab(ans,qid,uid) values('$ans','$qid','$uid')";
-		$retval = mysql_query($sql,$conn);
+		$retval = mysqli_query($conn, $sql);
 		if(!$retval) {
-			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysql_error());
+			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysqli_error($conn));
 		}  
 		
-			header('Location: admin.php');
+			header('Location: index.php');
 		}
 		
 	?>

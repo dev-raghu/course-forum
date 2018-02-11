@@ -144,44 +144,44 @@
 			 <?php 
 			 $dbhost = "localhost:3306";
 			 $dbuser = "root";
-			 $dbpass = "root";
-			 $conn = mysql_connect($dbhost,$dbuser,$dbpass);
+			 $dbpass = "";
+			 $conn = mysqli_connect($dbhost,$dbuser,$dbpass);
 			 if(!$conn) {
-				die("Can't connect now...oops !!! <br> reason : ".mysql_error());
+				die("Can't connect now...oops !!! <br> reason : ".mysqli_error($conn));
 			 }
 			 $sql = "create database if not exists forum";
-		$retval = mysql_query($sql,$conn);
+		$retval = mysqli_query($conn, $sql);
 		if(!$retval) {
-			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysql_error());
+			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysqli_error($conn));
 		}
-		//mysql_select_db("forum");
+		//mysqli_select_db("forum");
 		
-			 if(!mysql_select_db("forum")) {
-				die("Can't connect now...oops !!! <br> reason : ".mysql_error());
+			 if(!mysqli_select_db($conn, "forum")) {
+				die("Can't connect now...oops !!! <br> reason : ".mysqli_error($conn));
 			 }
-			 else if(mysql_select_db("forum")){
+			 else if(mysqli_select_db($conn, "forum")){
 			 $sql = "create table if not exists questab (ques TEXT NOT NULL,qid int AUTO_INCREMENT primary key,tags varchar(100) NOT NULL,uid varchar(100) NOT NULL)";
-		$retval = mysql_query($sql,$conn);
+		$retval = mysqli_query($conn, $sql);
 		if(!$retval) {
-			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysql_error());
+			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysqli_error($conn));
 		}
 			 $sql = "select * from questab";
-			 $retval = mysql_query($sql,$conn);
+			 $retval = mysqli_query($conn, $sql);
 			 if(!$retval) {
-				die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysql_error());
+				die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysqli_error($conn));
 			 }
 			 $sql1="select * from anstab";
 			 
-			 if(mysql_num_rows($retval)!=0){
-			 while($row = mysql_fetch_assoc($retval))
+			 if(mysqli_num_rows($retval)!=0){
+			 while($row = mysqli_fetch_assoc($retval))
 				{  
 					$question = $row['ques'];
 					echo "<table class='bordered '>".
 					      "<tr><td class='que' >".$row['qid'].".".$question.
 						 "<br><a class='badge'>Tags : {$row['tags']}</a>";
-						 $retval1=mysql_query($sql1,$conn);
+						 $retval1=mysqli_query($conn, $sql1);
 						 if($retval1){
-						while($row1= mysql_fetch_assoc($retval1))
+						while($row1= mysqli_fetch_assoc($retval1))
 						{
 							if($row1['qid']==$row['qid'])
 							{
@@ -192,7 +192,7 @@
 						}
 						
 						else{
-						//die("error".mysql_error());
+						//die("error".mysqli_error($conn));
 						}
 						echo "<br><span style='padding-top:19px;cursor:pointer;font-size:23px;' onclick='postanswer(\"".$question."\",\"".$row['qid']."\")' class='badge waves-effect left'>Click to answer</span><pre class='right'><i class='mdi-social-person'>asked by ".$row['uid']."</i></pre></td></tr>";
 						echo "</table>";
@@ -220,44 +220,44 @@
 			 <?php 
 			 $dbhost = "localhost:3306";
 			 $dbuser = "root";
-			 $dbpass = "root";
-			 $conn = mysql_connect($dbhost,$dbuser,$dbpass);
+			 $dbpass = "";
+			 $conn = mysqli_connect($dbhost,$dbuser,$dbpass);
 			 if(!$conn) {
-				die("Can't connect now...oops !!! <br> reason : ".mysql_error());
+				die("Can't connect now...oops !!! <br> reason : ".mysqli_error($conn));
 			 }
 			 $sql = "create database if not exists forum";
-		$retval = mysql_query($sql,$conn);
+		$retval = mysqli_query($conn, $sql);
 		if(!$retval) {
-			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysql_error());
+			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysqli_error($conn));
 		}
-		//mysql_select_db("forum");
+		//mysqli_select_db("forum");
 		
-			 if(!mysql_select_db("forum")) {
-				die("Can't connect now...oops !!! <br> reason : ".mysql_error());
+			 if(!mysqli_select_db($conn, "forum")) {
+				die("Can't connect now...oops !!! <br> reason : ".mysqli_error($conn));
 			 }
-			 else if(mysql_select_db("forum")){
+			 else if(mysqli_select_db($conn, "forum")){
 			 $sql = "create table if not exists questab (ques TEXT NOT NULL,qid int AUTO_INCREMENT primary key,tags varchar(100) NOT NULL,uid varchar(100) NOT NULL)";
-		$retval = mysql_query($sql,$conn);
+		$retval = mysqli_query($conn, $sql);
 		if(!$retval) {
-			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysql_error());
+			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysqli_error($conn));
 		}
 			 $sql = "select * from questab where tags='Networking'";
-			 $retval = mysql_query($sql,$conn);
+			 $retval = mysqli_query($conn, $sql);
 			 if(!$retval) {
-				die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysql_error());
+				die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysqli_error($conn));
 			 }
 			 $sql1="select * from anstab";
 			 
-			 if(mysql_num_rows($retval)!=0){
-			 while($row = mysql_fetch_assoc($retval))
+			 if(mysqli_num_rows($retval)!=0){
+			 while($row = mysqli_fetch_assoc($retval))
 				{  
 					$question = $row['ques'];
 					echo "<table class='bordered '>".
 					      "<tr><td class='que' >".$row['qid'].".".$question.
 						 "<br><a class='badge'>Tags : {$row['tags']}</a>";
-						 $retval1=mysql_query($sql1,$conn);
+						 $retval1=mysqli_query($conn, $sql1);
 						 if($retval1){
-						while($row1= mysql_fetch_assoc($retval1))
+						while($row1= mysqli_fetch_assoc($retval1))
 						{
 							if($row1['qid']==$row['qid'])
 							{
@@ -270,7 +270,7 @@
 						}
 						
 						else{
-						//die("error".mysql_error());
+						//die("error".mysqli_error($conn));
 						}
 						echo "<br><span style='padding-top:19px;cursor:pointer;font-size:23px;' onclick='postanswer(\"".$question."\",\"".$row['qid']."\")' class='badge waves-effect left'>Click to answer</span><pre class='right'><i class='mdi-social-person'>asked by ".$row['uid']."</i></pre></td></tr>";
 						
@@ -280,22 +280,22 @@
 				}
 			
 				$sql = "select * from questab where tags='Languages'";
-			 $retval = mysql_query($sql,$conn);
+			 $retval = mysqli_query($conn, $sql);
 			 if(!$retval) {
-				die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysql_error());
+				die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysqli_error($conn));
 			 }
 			 $sql1="select * from anstab";
 			 
-			 if(mysql_num_rows($retval)!=0){
-			 while($row = mysql_fetch_assoc($retval))
+			 if(mysqli_num_rows($retval)!=0){
+			 while($row = mysqli_fetch_assoc($retval))
 				{  
 					$question = $row['ques'];
 					echo "<table class='bordered '>".
 					      "<tr><td class='que' >".$row['qid'].".".$question.
 						 "<br><a class='badge'>Tags : {$row['tags']}</a>";
-						 $retval1=mysql_query($sql1,$conn);
+						 $retval1=mysqli_query($conn, $sql1);
 						 if($retval1){
-						while($row1= mysql_fetch_assoc($retval1))
+						while($row1= mysqli_fetch_assoc($retval1))
 						{
 							if($row1['qid']==$row['qid'])
 							{
@@ -306,7 +306,7 @@
 						}
 						
 						else{
-						//die("error".mysql_error());
+						//die("error".mysqli_error($conn));
 						}
 						echo "<br><span style='padding-top:19px;cursor:pointer;font-size:23px;' onclick='postanswer(\"".$question."\",\"".$row['qid']."\")' class='badge waves-effect left'>Click to answer</span><pre class='right'><i class='mdi-social-person'>asked by ".$row['uid']."</i></pre></td></tr>";
 						
@@ -316,22 +316,22 @@
 				}
 			
 				$sql = "select * from questab where tags='Database'";
-			 $retval = mysql_query($sql,$conn);
+			 $retval = mysqli_query($conn, $sql);
 			 if(!$retval) {
-				die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysql_error());
+				die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysqli_error($conn));
 			 }
 			 $sql1="select * from anstab";
 			 
-			 if(mysql_num_rows($retval)!=0){
-			 while($row = mysql_fetch_assoc($retval))
+			 if(mysqli_num_rows($retval)!=0){
+			 while($row = mysqli_fetch_assoc($retval))
 				{  
 					$question = $row['ques'];
 					echo "<table class='bordered '>".
 					      "<tr><td class='que' >".$row['qid'].".".$question.
 						 "<br><a class='badge'>Tags : {$row['tags']}</a>";
-						 $retval1=mysql_query($sql1,$conn);
+						 $retval1=mysqli_query($conn, $sql1);
 						 if($retval1){
-						while($row1= mysql_fetch_assoc($retval1))
+						while($row1= mysqli_fetch_assoc($retval1))
 						{
 							if($row1['qid']==$row['qid'])
 							{
@@ -342,7 +342,7 @@
 						}
 						
 						else{
-						//die("error".mysql_error());
+						//die("error".mysqli_error($conn));
 						}
 						echo "<br><span style='padding-top:19px;cursor:pointer;font-size:23px;' onclick='postanswer(\"".$question."\",\"".$row['qid']."\")' class='badge waves-effect left'>Click to answer</span><pre class='right'><i class='mdi-social-person'>asked by ".$row['uid']."</i></pre></td></tr>";
 						
@@ -374,47 +374,47 @@
 			 if(isset($_POST['submitfilter'])) {
 			 $dbhost = "localhost:3306";
 			 $dbuser = "root";
-			 $dbpass = "root";
-			 $conn = mysql_connect($dbhost,$dbuser,$dbpass);
+			 $dbpass = "";
+			 $conn = mysqli_connect($dbhost,$dbuser,$dbpass);
 			 if(!$conn) {
-				die("Can't connect now...oops !!! <br> reason : ".mysql_error());
+				die("Can't connect now...oops !!! <br> reason : ".mysqli_error($conn));
 			 }
 			 $sql = "create database if not exists forum";
-		$retval = mysql_query($sql,$conn);
+		$retval = mysqli_query($conn, $sql);
 		if(!$retval) {
-			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysql_error());
+			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysqli_error($conn));
 		}
-		//mysql_select_db("forum");
+		//mysqli_select_db("forum");
 		
-			 if(!mysql_select_db("forum")) {
-				die("Can't connect now...oops !!! <br> reason : ".mysql_error());
+			 if(!mysqli_select_db($conn, "forum")) {
+				die("Can't connect now...oops !!! <br> reason : ".mysqli_error($conn));
 			 }
-			 else if(mysql_select_db("forum")){
+			 else if(mysqli_select_db($conn, "forum")){
 			 $sql = "create table if not exists questab (ques TEXT NOT NULL,qid int AUTO_INCREMENT primary key,tags varchar(100) NOT NULL,uid varchar(100) NOT NULL)";
-		$retval = mysql_query($sql,$conn);
+		$retval = mysqli_query($conn, $sql);
 		if(!$retval) {
-			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysql_error());
+			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysqli_error($conn));
 		}
 		
 		     $userid = $_POST['uidfilter'];
 			 $sql = "select * from questab where uid='$userid'";
-			 $retval = mysql_query($sql,$conn);
+			 $retval = mysqli_query($conn, $sql);
 			 if(!$retval) {
-				die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysql_error());
+				die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysqli_error($conn));
 			 }
 			
 			 $sql1="select * from anstab";
 			 
-			 if(mysql_num_rows($retval)!=0){
-			 while($row = mysql_fetch_assoc($retval))
+			 if(mysqli_num_rows($retval)!=0){
+			 while($row = mysqli_fetch_assoc($retval))
 				{  
 					$question = $row['ques'];
 					echo "<table class='bordered '>".
 					      "<tr><td class='que' >".$row['qid'].".".$question.
 						 "<br><a class='badge'>Tags : {$row['tags']}</a>";
-						 $retval1=mysql_query($sql1,$conn);
+						 $retval1=mysqli_query($conn, $sql1);
 						 if($retval1){
-						while($row1= mysql_fetch_assoc($retval1))
+						while($row1= mysqli_fetch_assoc($retval1))
 						{
 							if($row1['qid']==$row['qid'])
 							{
@@ -425,7 +425,7 @@
 						}
 						
 						else{
-						//die("error".mysql_error());
+						//die("error".mysqli_error($conn));
 						}
 						echo "<br><span style='padding-top:19px;cursor:pointer;font-size:23px;' onclick='postanswer(\"".$question."\",\"".$row['qid']."\")' class='badge waves-effect left'>Click to answer</span><pre class='right'><i class='mdi-social-person'>asked by ".$row['uid']."</i></pre></td></tr>";
 						

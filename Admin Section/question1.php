@@ -7,21 +7,21 @@
 	   if(isset($_POST["submitque"])) {
 		$dbhost = "localhost:3306";
 		$dbuser = "root";
-		$dbpass = "root";
-		$conn = mysql_connect($dbhost,$dbuser,$dbpass);
+		$dbpass = "";
+		$conn = mysqli_connect($dbhost,$dbuser,$dbpass);
 		if(!$conn) {
-			die("Can't connect now...oops !!! <br> reason : ".mysql_error());
+			die("Can't connect now...oops !!! <br> reason : ".mysqli_error($conn));
 		}
 		$sql = "create database if not exists forum";
-		$retval = mysql_query($sql,$conn);
+		$retval = mysqli_query($conn, $sql);
 		if(!$retval) {
-			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysql_error());
+			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysqli_error($conn));
 		}
-		mysql_select_db("forum");
+		mysqli_select_db($conn, "forum");
 		$sql = "create table if not exists questab (ques TEXT NOT NULL,qid int AUTO_INCREMENT primary key,tags varchar(100) NOT NULL,uid varchar(100) NOT NULL)";
-		$retval = mysql_query($sql,$conn);
+		$retval = mysqli_query($conn, $sql);
 		if(!$retval) {
-			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysql_error());
+			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysqli_error($conn));
 		}
 		    $tag = '';
 			if(isset($_POST["nw"])) {
@@ -35,13 +35,13 @@
 				$tag = $tag.$_POST["db"];
 			}
 			//echo "<br>".$tag;
-			$qarea = mysql_real_escape_string($_POST["qarea"]);
-			$uid = mysql_real_escape_string($_POST["uid"]);
-			//echo $qarea."<br>".$uid;
+			$qarea = ($_POST['qarea']);
+			$uid = ($_POST['uid']);
+			echo $qarea."<br>".$uid;
 		$sql = "insert into questab (ques,tags,uid) values('$qarea','$tag','$uid')";
-		$retval = mysql_query($sql,$conn);
+		$retval = mysqli_query($conn, $sql);
 		if(!$retval) {
-			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysql_error());
+			die("<h3>Oopsie some error....Visit Later</h3><br> reason : ".mysqli_error($conn));
 		}
 		
 			header('Location: admin.php');
